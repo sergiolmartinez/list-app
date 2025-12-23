@@ -1,0 +1,40 @@
+# --- Security (The most important part) ---
+.env
+*.pem
+*.key
+
+# --- OS System Files ---
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# --- Python (Backend) ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.pytest_cache/
+# If you use a local SQLite db for testing
+*.sqlite3
+
+# --- Node.js / React Native (Frontend) ---
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json # Optional: Some teams commit this, some don't. Usually safer to commit it.
+
+# --- Expo (Frontend) ---
+.expo/
+dist/
+web-build/
+
+# --- IDE Settings (VS Code, JetBrains) ---
+.vscode/
+.idea/
+
+# --- Docker ---
+# Ignore local database data if you ever mapped it to a folder instead of a volume
+postgres_data/
