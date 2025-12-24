@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   TextInput,
   Alert,
+  RefreshControl,
 } from "react-native";
 import { Swipeable } from "react-native-gesture-handler";
 import { lists } from "../services/api";
@@ -21,7 +22,6 @@ export default function HomeScreen({
   const [newTitle, setNewTitle] = useState("");
   const [refreshing, setRefreshing] = useState(false);
 
-  // Fetch lists from backend
   const fetchLists = async () => {
     try {
       const response = await lists.getAll();
@@ -29,6 +29,12 @@ export default function HomeScreen({
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await fetchLists();
+    setRefreshing(false);
   };
 
   const handleCreate = async () => {
@@ -97,11 +103,14 @@ export default function HomeScreen({
       <FlatList
         data={todoLists}
         keyExtractor={(item) => item.id}
-        refreshing={refreshing}
-        onRefresh={() => {
-          setRefreshing(true);
-          fetchLists().then(() => setRefreshing(false));
-        }}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            tintColor="#fff" // iOS Spinner Color
+            colors={["#fff"]} // Android Spinner Color
+          />
+        }
         renderItem={({ item }) => (
           // 4. Wrap in Swipeable
           <Swipeable renderRightActions={() => renderRightActions(item.id)}>

@@ -28,6 +28,18 @@
     },
     "plugins": [
       "expo-secure-store"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "33c0d621-fc54-40eb-9b96-86268f53581a"
+      }
+    },
+    "owner": "smart0586",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/33c0d621-fc54-40eb-9b96-86268f53581a"
+    }
   }
 }
